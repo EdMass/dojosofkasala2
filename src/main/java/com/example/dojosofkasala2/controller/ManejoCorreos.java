@@ -84,4 +84,13 @@ public class ManejoCorreos {
                 .subscribe(c -> log.info("Numero de correos "+dominio+" : "+c));
     }
 
+    public void cambiarEstadoDeEnvioA(boolean estado){
+        Flux.fromIterable(correoList())
+                .map(c -> {
+                    c.setEnviado(estado);
+                    return c;
+                })
+                .subscribe(c -> log.info(c.toString()));
+    }
+
 }

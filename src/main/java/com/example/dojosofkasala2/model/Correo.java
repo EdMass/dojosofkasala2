@@ -50,6 +50,7 @@ public class Correo {
     public String toString() {
         return "Correo{" +
                 "correo='" + correo + '\'' +
+                ", enviado=" + enviado +
                 '}';
     }
 }
