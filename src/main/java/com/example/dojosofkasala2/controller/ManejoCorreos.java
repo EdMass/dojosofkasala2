@@ -8,6 +8,8 @@ import reactor.core.publisher.Flux;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ManejoCorreos {
 
@@ -44,7 +46,7 @@ public class ManejoCorreos {
         correos.add(new Correo("aargomedo@outlook.com",true));
         correos.add(new Correo("elizabetharmstrong39@gmail.com"));
         correos.add(new Correo("c_arnes@hotmail.com"));
-        correos.add(new Correo("joy_pao_@hotmail.com"));
+        correos.add(new Correo("joy_pao_@.com"));
         correos.add(new Correo("arquitectoasenjo"));
         return correos;
     }
@@ -65,11 +67,13 @@ public class ManejoCorreos {
     public void verificaionDeCaracteristicas(){
         Flux.fromIterable(correoList())
                 .map(c -> {
-                    Object o = c.getCorreo().contains("@hotmail")
-                            || c.getCorreo().contains("@gmail")
-                            || c.getCorreo().contains("@outlook")
-                            || c.getCorreo().contains("@yahoo")
-                            ? c :"Este correo no cumple con las condiciones "+c;
+                    Pattern pattern = Pattern
+                            .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                                    + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+                    Matcher mather = pattern.matcher(c.getCorreo());
+
+                    Object o = mather.find() == true ? c + " El correo es valido" :
+                            "el correo no es valido " + c;
                     return o;
                 })
                 .subscribe(c -> log.info(c.toString()));
