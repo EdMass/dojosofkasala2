@@ -23,6 +23,8 @@ public class Dojosofkasala2Application implements CommandLineRunner {
 
 		ManejoCorreos app = new ManejoCorreos();
 		//app.eliminarRepetidos();
-		app.filtrarPorDominio("gmail");
+		//app.filtrarPorDominio("gmail");
+		//app.contarCorreos();
+		app.contarCorreosPorDominio("gmail");
 	}
 }

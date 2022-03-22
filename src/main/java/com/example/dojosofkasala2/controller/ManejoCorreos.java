@@ -70,5 +70,18 @@ public class ManejoCorreos {
                 })
                 .subscribe(c -> log.info(c.toString()));
     }
-    
+
+    public void contarCorreos(){
+        Flux.fromIterable(correoList())
+                .count()
+                .subscribe(c -> log.info("Numero de correos : "+c));
+    }
+
+    public void contarCorreosPorDominio(String dominio){
+        Flux.fromIterable(correoList())
+                .filter(c -> c.getCorreo().contains(dominio))
+                .count()
+                .subscribe(c -> log.info("Numero de correos "+dominio+" : "+c));
+    }
+
 }

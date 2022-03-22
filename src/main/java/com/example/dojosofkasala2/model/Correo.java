@@ -25,6 +25,13 @@ public class Correo {
         this.correo = correo;
     }
 
+    public Boolean getEnviado() {
+        return enviado;
+    }
+
+    public void setEnviado(Boolean enviado) {
+        this.enviado = enviado;
+    }
 
     @Override
     public boolean equals(Object o) {
