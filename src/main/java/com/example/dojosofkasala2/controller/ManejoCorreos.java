@@ -45,7 +45,7 @@ public class ManejoCorreos {
         correos.add(new Correo("elizabetharmstrong39@gmail.com"));
         correos.add(new Correo("c_arnes@hotmail.com"));
         correos.add(new Correo("joy_pao_@hotmail.com"));
-        correos.add(new Correo("arquitectoasenjo@gmail.com",true));
+        correos.add(new Correo("arquitectoasenjo"));
         return correos;
     }
 
@@ -65,8 +65,12 @@ public class ManejoCorreos {
     public void verificaionDeCaracteristicas(){
         Flux.fromIterable(correoList())
                 .map(c -> {
-                    c.getCorreo().contains("[/^([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})$/\n]");
-                    return c;
+                    Object o = c.getCorreo().contains("@hotmail")
+                            || c.getCorreo().contains("@gmail")
+                            || c.getCorreo().contains("@outlook")
+                            || c.getCorreo().contains("@yahoo")
+                            ? c :"Este correo no cumple con las condiciones "+c;
+                    return o;
                 })
                 .subscribe(c -> log.info(c.toString()));
     }

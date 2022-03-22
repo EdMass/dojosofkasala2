@@ -26,6 +26,7 @@ public class Dojosofkasala2Application implements CommandLineRunner {
 		//app.filtrarPorDominio("gmail");
 		//app.contarCorreos();
 		//app.contarCorreosPorDominio("gmail");
-		app.cambiarEstadoDeEnvioA(true);
+		//app.cambiarEstadoDeEnvioA(true);
+		app.verificaionDeCaracteristicas();
 	}
 }
